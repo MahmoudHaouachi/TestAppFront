@@ -1,5 +1,6 @@
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserModule} from '@angular/platform-browser';
+import { APP_INITIALIZER } from '@angular/core';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
@@ -12,6 +13,12 @@ import {CreateCustomerComponent} from './create-customer/create-customer.compone
 
 import {enableProdMode} from '@angular/core';
 import {SearchCustomersComponent} from './search-customers/search-customers.component';
+
+const appInitializerFn = (appConfig: AppConfigService) => {
+  return () => {
+    return appConfig.loadAppConfig();
+  };
+};
 
 @NgModule({
   declarations: [
@@ -27,7 +34,13 @@ import {SearchCustomersComponent} from './search-customers/search-customers.comp
     HttpModule,
     AppRoutingModule
   ],
-  providers: [DataService],
+  providers: [DataService, AppConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializerFn,
+      multi: true,
+      deps: [AppConfigService]
+}],
   bootstrap: [AppComponent]
 })
 
