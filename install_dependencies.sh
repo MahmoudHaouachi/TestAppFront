@@ -10,7 +10,7 @@ sudo yum install -y nginx
 
 echo Installing source NPM dependencies...
 # Need https driver.
-sudo yum install varnish
+sudo yum install -y varnish
 # Install Yarn.
 
 npm i -g yarn
