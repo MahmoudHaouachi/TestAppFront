@@ -1,0 +1,12 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/Angular
+hooks:
+  BeforeInstall:
+    - location: install_dependencies.sh
+      runas: root
+  AfterInstall:
+    - location: setup.sh
+      runas: root

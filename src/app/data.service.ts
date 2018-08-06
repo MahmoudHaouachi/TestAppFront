@@ -12,7 +12,9 @@ export class DataService {
   private customersUrl = 'http://localhost:8080/customer';  // URL to web API
   private headers = new Headers({'Content-Type': 'application/json'});
 
-  constructor(private http: Http) {}
+  constructor(private http: Http, private appConfigService : AppConfigService) {}
+    public data = this.appConfigService.getConfig();
+    public customersUrl = `http://${this.data["serverURL"]}`;
 
   // Get all customers
   getCustomers(): Promise<Customer[]> {
@@ -24,7 +26,7 @@ export class DataService {
   }
 
   getCustomersByLastName(lastName: string): Promise<Customer[]> {
-    const url = `http://localhost:8080/findbylastname/${lastName}`;
+    const url = `${this.customersUrl}/findbylastname/${lastName}`;
     return this.http.get(url)
       .toPromise()
       .then(response => response.json() as Customer)
@@ -33,7 +35,7 @@ export class DataService {
 
   create(customer: Customer): Promise<Customer> {
     return this.http
-      .post('http://localhost:8080/postcustomer', JSON.stringify(customer), {headers : this.headers})
+      .post('this.customersUrl/postcustomer', JSON.stringify(customer), {headers : this.headers})
       .toPromise()
       .then(res => res.json() as Customer)
       .catch(this.handleError);
