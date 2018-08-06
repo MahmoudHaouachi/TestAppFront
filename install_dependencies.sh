@@ -2,7 +2,7 @@
 
 yum update
 curl -sL https://rpm.nodesource.com/setup_8.x | bash -
-sudo yum install nodejs
+sudo yum install -y nodejs
 
 sudo yum install epel-release
 sudo yum install -y nginx
