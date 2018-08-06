@@ -13,6 +13,7 @@ import {CreateCustomerComponent} from './create-customer/create-customer.compone
 
 import {enableProdMode} from '@angular/core';
 import {SearchCustomersComponent} from './search-customers/search-customers.component';
+import { AppConfigService } from './app-config.service';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
