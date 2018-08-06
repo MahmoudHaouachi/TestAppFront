@@ -12,8 +12,9 @@ echo Installing source NPM dependencies...
 # Need https driver.
 sudo yum install varnish
 # Install Yarn.
-curl -sL https://dl.yarnpkg.com/rpm/yarn.repo -o /etc/yum.repos.d/yarn.repo
-sudo yum install -y yarn
+curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo yum -y install yarn
 # Install Angular CLI
 yarn global add @angular/cli@1.4.2
 
