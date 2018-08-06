@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { AppConfigService } from './app-config.service';
 
 
 import { Customer } from './customer';
@@ -9,7 +10,6 @@ import { Customer } from './customer';
 })
 export class DataService {
 
-  private customersUrl = 'http://localhost:8080/customer';  // URL to web API
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http, private appConfigService : AppConfigService) {}
@@ -19,7 +19,7 @@ export class DataService {
   // Get all customers
   getCustomers(): Promise<Customer[]> {
 
-    return this.http.get(this.customersUrl)
+    return this.http.get(this.customersUrl+'/customer')
       .toPromise()
       .then(response => response.json() as Customer[])
       .catch(this.handleError);
@@ -35,7 +35,7 @@ export class DataService {
 
   create(customer: Customer): Promise<Customer> {
     return this.http
-      .post('this.customersUrl/postcustomer', JSON.stringify(customer), {headers : this.headers})
+      .post(this.customersUrl+'/postcustomer', JSON.stringify(customer), {headers : this.headers})
       .toPromise()
       .then(res => res.json() as Customer)
       .catch(this.handleError);
