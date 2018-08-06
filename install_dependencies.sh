@@ -13,7 +13,7 @@ echo Installing source NPM dependencies...
 sudo yum install -y varnish
 # Install Yarn.
 curl -sL https://dl.yarnpkg.com/rpm/yarn.repo -o /etc/yum.repos.d/yarn.repo
-sudo yum install -y yarn
+yum install -y yarn
 # Install Angular CLI
 yarn global add @angular/cli@1.4.2
 yarn
