@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Http } from '@angular/http';
 
 @Injectable()
 export class AppConfigService {
   private appConfig;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: Http) { }
 
   loadAppConfig() {
     return this.http.get('/assets/data/appConfig.json')
