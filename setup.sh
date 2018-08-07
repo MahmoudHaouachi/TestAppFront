@@ -9,4 +9,4 @@ rm -rf appConfig.json
 echo '{ "serverURL" : "'"$PUBLIC_IP"'"}' > appConfig.json
 cd /home/Angular
 
-service nginx start
+
