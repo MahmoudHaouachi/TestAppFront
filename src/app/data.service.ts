@@ -14,10 +14,12 @@ export class DataService {
 
   constructor(private http: Http, private appConfigService : AppConfigService) {}
     public data = this.appConfigService.getConfig();
-    public customersUrl = `http://${this.data["serverURL"]}`;
+
+    public customersUrl = 'http://'+JSON.parse(this.data["_body"])["serverURL"];
 
   // Get all customers
   getCustomers(): Promise<Customer[]> {
+  
 
     return this.http.get(this.customersUrl+'/customer')
       .toPromise()
